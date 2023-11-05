@@ -12,8 +12,15 @@ class Pengaduan extends Model
     protected $fillable = [
         'user_id',
         'kategori_id',
-        'daskripsi',
-        'gambar'
+        'deskripsi',
+        'gambar',
+        'latitude',
+        'longitude',
+        'jam_aduan',
+        'tanggal_aduan',
+        'tanggal_proses',
+        'tanggal_selesai',
+        'status',
     ];
 
     public function user()

@@ -17,6 +17,13 @@ return new class extends Migration
             $table->foreignId('kategori_id')->constrained('kategoris')->onDelete('cascade')->onUpdate('cascade');
             $table->text('deskripsi');
             $table->string('gambar');
+            $table->string('latitude');
+            $table->string('longitude');
+            $table->time('jam_aduan');
+            $table->date('tanggal_aduan');
+            $table->date('tanggal_proses')->nullable();
+            $table->date('tanggal_selesai')->nullable();
+            $table->enum('status', ['menunggu', 'proses', 'selesai', 'tolak']);
             $table->timestamps();
         });
     }

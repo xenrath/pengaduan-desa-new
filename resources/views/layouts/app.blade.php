@@ -94,8 +94,8 @@
                         </li>
                         <li class="nav-header">Pengaduan</li>
                         <li class="nav-item">
-                            <a href="{{ url('pengaduan-menunggu') }}"
-                                class="nav-link {{ request()->is('pengaduan-menunggu*') ? 'active' : '' }}">
+                            <a href="{{ url('pengaduan/menunggu') }}"
+                                class="nav-link {{ request()->is('pengaduan/menunggu*') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-clock"></i>
                                 <p>
                                     Data Menunggu
@@ -103,8 +103,8 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ url('pengaduan-proses') }}"
-                                class="nav-link {{ request()->is('pengaduan-proses*') ? 'active' : '' }}">
+                            <a href="{{ url('pengaduan/proses') }}"
+                                class="nav-link {{ request()->is('pengaduan/proses*') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-tasks"></i>
                                 <p>
                                     Data Proses
@@ -112,8 +112,8 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ url('pengaduan-selesai') }}"
-                                class="nav-link {{ request()->is('pengaduan-selesai*') ? 'active' : '' }}">
+                            <a href="{{ url('pengaduan/selesai') }}"
+                                class="nav-link {{ request()->is('pengaduan/selesai*') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-history"></i>
                                 <p>
                                     Data Riwayat
@@ -124,7 +124,7 @@
                         <li class="nav-item">
                             <a href="{{ url('kategori') }}"
                                 class="nav-link {{ request()->is('kategori*') ? 'active' : '' }}">
-                                <i class="nav-icon fas fa-cog"></i>
+                                <i class="nav-icon fas fa-list"></i>
                                 <p>
                                     Data Kategori
                                 </p>
