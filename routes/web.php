@@ -21,9 +21,16 @@ Route::post('login', [AuthController::class, 'authenticate']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/', [HomeController::class, 'index']);
+    
     Route::get('pengaduan/menunggu', [\App\Http\Controllers\Pengaduan\MenungguController::class, 'index']);
     Route::get('pengaduan/menunggu/{id}', [\App\Http\Controllers\Pengaduan\MenungguController::class, 'show']);
     Route::get('pengaduan/menunggu/proses/{id}', [\App\Http\Controllers\Pengaduan\MenungguController::class, 'proses']);
+    Route::get('pengaduan/menunggu/tolak/{id}', [\App\Http\Controllers\Pengaduan\MenungguController::class, 'tolak']);
+    
+    Route::get('pengaduan/proses', [\App\Http\Controllers\Pengaduan\ProsesController::class, 'index']);
+    Route::get('pengaduan/proses/{id}', [\App\Http\Controllers\Pengaduan\ProsesController::class, 'show']);
+
     Route::resource('kategori', KategoriController::class);
+    
     Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 });

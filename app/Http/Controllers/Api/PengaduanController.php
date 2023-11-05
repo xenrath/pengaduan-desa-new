@@ -10,9 +10,20 @@ use Illuminate\Support\Facades\Validator;
 
 class PengaduanController extends Controller
 {
-    public function index($user_id)
+    public function list_all()
     {
-        $pengaduans = Pengaduan::where('user_id', $user_id)->first();
+        $pengaduans = Pengaduan::where('status', 'proses')->orWhere('status', 'selesai')->get();
+
+        if ($pengaduans) {
+            return $this->response(true, 'Pengaduan berhasil ditampilkan', $pengaduans);
+        } else {
+            return $this->response(false, 'Pengaduan kosong!');
+        }
+    }
+    
+    public function list($user_id)
+    {
+        $pengaduans = Pengaduan::where('user_id', $user_id)->get();
 
         if ($pengaduans) {
             return $this->response(true, 'Pengaduan berhasil ditampilkan', $pengaduans);

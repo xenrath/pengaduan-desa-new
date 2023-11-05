@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Pengaduan Menunggu')
+@section('title', 'Pengaduan Proses')
 
 @section('content')
     <!-- Content Header (Page header) -->
@@ -8,7 +8,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Pengaduan Menunggu</h1>
+                    <h1 class="m-0">Pengaduan Proses</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -60,62 +60,35 @@
                                             {{ date('d M Y', strtotime($pengaduan->tanggal_aduan)) }}
                                         </td>
                                         <td class="text-center">
-                                            <a href="{{ url('pengaduan/menunggu/' . $pengaduan->id) }}"
+                                            <a href="{{ url('pengaduan/proses/' . $pengaduan->id) }}"
                                                 class="btn btn-info btn-sm">
                                                 Lihat
                                             </a>
-                                            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
-                                                data-target="#modal-proses-{{ $pengaduan->id }}">
-                                                Proses
-                                            </button>
-                                            <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
-                                                data-target="#modal-tolak-{{ $pengaduan->id }}">
-                                                Tolak
+                                            <button type="button" class="btn btn-success btn-sm" data-toggle="modal"
+                                                data-target="#modal-selesai-{{ $pengaduan->id }}">
+                                                Selesaikan
                                             </button>
                                         </td>
                                     </tr>
-                                    <div class="modal fade" id="modal-proses-{{ $pengaduan->id }}">
+                                    <div class="modal fade" id="modal-selesai-{{ $pengaduan->id }}">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h4 class="modal-title">Proses Pengaduan</h4>
+                                                    <h4 class="modal-title">Selesaikan Pengaduan</h4>
                                                     <button type="button" class="close" data-dismiss="modal"
                                                         aria-label="Close">
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    Yakin proses pengaduan dari
+                                                    Yakin selesaikan pengaduan dari
                                                     <strong>{{ $pengaduan->user->nama }}</strong>?
                                                 </div>
                                                 <div class="modal-footer justify-content-between">
                                                     <button type="button" class="btn btn-default"
                                                         data-dismiss="modal">Batal</button>
-                                                    <a href="{{ url('pengaduan/menunggu/proses/' . $pengaduan->id) }}"
-                                                        class="btn btn-primary">Proses</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="modal fade" id="modal-tolak-{{ $pengaduan->id }}">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h4 class="modal-title">Tolak Pengaduan</h4>
-                                                    <button type="button" class="close" data-dismiss="modal"
-                                                        aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    Yakin tolak pengaduan dari
-                                                    <strong>{{ $pengaduan->user->nama }}</strong>?
-                                                </div>
-                                                <div class="modal-footer justify-content-between">
-                                                    <button type="button" class="btn btn-default"
-                                                        data-dismiss="modal">Batal</button>
-                                                    <a href="{{ url('pengaduan/menunggu/tolak/' . $pengaduan->id) }}"
-                                                        class="btn btn-danger">Tolak</a>
+                                                    <a href="{{ url('pengaduan/proses/selesaikan/' . $pengaduan->id) }}"
+                                                        class="btn btn-success">Selesaikan</a>
                                                 </div>
                                             </div>
                                         </div>

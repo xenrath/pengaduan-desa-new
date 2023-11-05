@@ -19,5 +19,6 @@ use Illuminate\Support\Facades\Route;
 Route::post('login', [UserController::class, 'login']);
 Route::post('register', [UserController::class, 'register']);
 
-Route::get('pengaduan/{user_id}', [PengaduanController::class, 'index']);
+Route::get('pengaduan/list-all', [PengaduanController::class, 'list_all']);
+Route::get('pengaduan/list/{user_id}', [PengaduanController::class, 'list']);
 Route::post('pengaduan', [PengaduanController::class, 'store']);
