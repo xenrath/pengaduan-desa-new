@@ -27,9 +27,14 @@ class Pengaduan extends Model
     {
         return $this->belongsTo(User::class);
     }
-    
+
     public function kategori()
     {
         return $this->belongsTo(Kategori::class);
+    }
+
+    public function detail_pengaduans()
+    {
+        return $this->hasMany(DetailPengaduan::class);
     }
 }

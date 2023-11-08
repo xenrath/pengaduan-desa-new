@@ -77,6 +77,20 @@ class UserController extends Controller
         }
     }
 
+    public function verifikasi(Request $request, $id)
+    {
+        $telp = User::where('id', $id)->value('telp');
+        $kode = Otp::where('telp', $telp)->value('kode');
+
+        if ($request->kode == $kode) {
+            User::where('id', $id)->update([
+                'status' => true
+            ]);
+        } else {
+            
+        }
+    }
+
     public function otp($telp)
     {
         $user = Otp::where('telp', $telp)->exists();
@@ -117,6 +131,17 @@ class UserController extends Controller
         $result = curl_exec($curl);
 
         curl_close($curl);
+    }
+
+    public function show($id)
+    {
+        $user = User::where('id', $id)->first();
+
+        if ($user) {
+            return $this->response(true, 'Berhasil menampilkan user', $user);
+        } else {
+            return $this->response(false, 'Gagal menampilkan user!');
+        }
     }
 
     public function response($status, $message, $data = null)

@@ -29,6 +29,11 @@ Route::middleware('auth')->group(function () {
     
     Route::get('pengaduan/proses', [\App\Http\Controllers\Pengaduan\ProsesController::class, 'index']);
     Route::get('pengaduan/proses/{id}', [\App\Http\Controllers\Pengaduan\ProsesController::class, 'show']);
+    Route::post('pengaduan/proses/add-detail/{id}', [\App\Http\Controllers\Pengaduan\ProsesController::class, 'add_detail']);
+    Route::get('pengaduan/proses/selesai/{id}', [\App\Http\Controllers\Pengaduan\ProsesController::class, 'selesai']);
+
+    Route::get('pengaduan/riwayat', [\App\Http\Controllers\Pengaduan\RiwayatController::class, 'index']);
+    Route::get('pengaduan/riwayat/{id}', [\App\Http\Controllers\Pengaduan\RiwayatController::class, 'show']);
 
     Route::resource('kategori', KategoriController::class);
     

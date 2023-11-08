@@ -20,7 +20,7 @@ class PengaduanController extends Controller
             return $this->response(false, 'Pengaduan kosong!');
         }
     }
-    
+
     public function list($user_id)
     {
         $pengaduans = Pengaduan::where('user_id', $user_id)->get();
@@ -74,6 +74,17 @@ class PengaduanController extends Controller
             return $this->response(true, 'Pengaduan berhasil ditambahkan');
         } else {
             return $this->response(false, 'Pengaduan gagal ditambahkan!');
+        }
+    }
+
+    public function show($id)
+    {
+        $pengaduan = Pengaduan::where('id', $id)->with('user', 'kategori', 'detail_pengaduans')->first();
+
+        if ($pengaduan) {
+            return $this->response(true, 'Detail Pengaduan berhasil ditampilkan', $pengaduan);
+        } else {
+            return $this->response(false, 'Detail Pengaduan kosong!');
         }
     }
 
