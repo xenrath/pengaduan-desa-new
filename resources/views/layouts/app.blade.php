@@ -112,8 +112,8 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ url('pengaduan/selesai') }}"
-                                class="nav-link {{ request()->is('pengaduan/selesai*') ? 'active' : '' }}">
+                            <a href="{{ url('pengaduan/riwayat') }}"
+                                class="nav-link {{ request()->is('pengaduan/riwayat*') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-history"></i>
                                 <p>
                                     Data Riwayat
@@ -121,6 +121,15 @@
                             </a>
                         </li>
                         <li class="nav-header">Lainnya</li>
+                        <li class="nav-item">
+                            <a href="{{ url('user') }}"
+                                class="nav-link {{ request()->is('user*') ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-users"></i>
+                                <p>
+                                    Data User
+                                </p>
+                            </a>
+                        </li>
                         <li class="nav-item">
                             <a href="{{ url('kategori') }}"
                                 class="nav-link {{ request()->is('kategori*') ? 'active' : '' }}">

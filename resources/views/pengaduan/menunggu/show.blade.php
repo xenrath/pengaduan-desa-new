@@ -3,6 +3,12 @@
 @section('title', 'Detail Pengaduan')
 
 @section('content')
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
+        integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+        crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
+        integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
+        crossorigin=""></script>
     <!-- Content Header (Page header) -->
     <div class="content-header">
         <div class="container-fluid">
@@ -25,14 +31,14 @@
 
     <section class="content">
         <div class="container-fluid">
-            <div class="card">
-                <div class="card-header">
-                    <h3 class="card-title">Detail Pengaduan</h3>
-                </div>
-                <!-- /.card-header -->
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-lg-8">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Detail Pengaduan</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
                             <div class="row">
                                 <div class="col-lg-4 mb-3">
                                     <strong>Nama Pengadu</strong>
@@ -66,14 +72,26 @@
                                     {{ date('d M Y', strtotime($pengaduan->tanggal_aduan)) }}
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-lg-4">
                             <a href="#" data-toggle="modal" data-target="#modal-gambar">
                                 <img src="{{ asset('storage/uploads/' . $pengaduan->gambar) }}" alt="{{ $pengaduan->nama }}"
                                     class="w-100 rounded">
                             </a>
                         </div>
                     </div>
+                </div>
+                <div class="col-lg-6">
+                    <div id="map" style="width:100%; height:400px;"></div>
+                    <script>
+                        var map = L.map('map').setView([{{ $pengaduan->latitude }}, {{ $pengaduan->longitude }}], 18);
+                        mapLink = '<a href="http://openstreetmap.org">OpenStreetMap</a>';
+                        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                        }).addTo(map);
+                        L.marker([{{ $pengaduan->latitude }}, {{ $pengaduan->longitude }}])
+                            .addTo(map)
+                            .bindPopup("{{ $pengaduan->kategori->nama }}")
+                            .openPopup();
+                    </script>
                 </div>
             </div>
         </div>

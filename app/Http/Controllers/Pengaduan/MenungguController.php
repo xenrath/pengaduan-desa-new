@@ -20,7 +20,15 @@ class MenungguController extends Controller
     {
         $pengaduan = Pengaduan::where('id', $id)->first();
 
-        return view('pengaduan.menunggu.show', compact('pengaduan'));
+        $result = [
+            ['nama' => $pengaduan->kategori->nama],
+            ['latitude' => $pengaduan->latitude],
+            ['longitude' => $pengaduan->longitude],
+        ];
+
+        $result_lat_long = json_encode($result);
+
+        return view('pengaduan.menunggu.show', compact('pengaduan', 'result_lat_long'));
     }
 
     public function proses($id)

@@ -11,9 +11,9 @@ class RiwayatController extends Controller
 {
     public function index()
     {
-        $pengaduans = Pengaduan::where('status', 'proses')->with('user', 'kategori')->get();
+        $pengaduans = Pengaduan::where('status', 'selesai')->orWhere('status', 'tolak')->with('user', 'kategori')->get();
 
-        return view('pengaduan.proses.index', compact('pengaduans'));
+        return view('pengaduan.riwayat.index', compact('pengaduans'));
     }
 
     public function show($id)
@@ -21,6 +21,6 @@ class RiwayatController extends Controller
         $pengaduan = Pengaduan::where('id', $id)->first();
         $detail_pengaduans = DetailPengaduan::where('pengaduan_id', $id)->orderBy('id', 'desc')->get();
 
-        return view('pengaduan.proses.show', compact('pengaduan', 'detail_pengaduans'));
+        return view('pengaduan.riwayat.show', compact('pengaduan', 'detail_pengaduans'));
     }
 }

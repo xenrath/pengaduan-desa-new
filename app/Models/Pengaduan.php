@@ -14,6 +14,7 @@ class Pengaduan extends Model
         'kategori_id',
         'deskripsi',
         'gambar',
+        'alamat',
         'latitude',
         'longitude',
         'jam_aduan',
