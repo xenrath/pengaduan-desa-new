@@ -19,21 +19,24 @@ class UserSeeder extends Seeder
                 'telp' => 'admin',
                 'password' => bcrypt('admin'),
                 'role' => 'admin',
-                'status' => true
+                'is_verif' => true,
+                'is_block' => false
             ],
             [
                 'nama' => 'Syaiful',
                 'telp' => '81234567890',
                 'password' => bcrypt('syaiful'),
                 'role' => 'user',
-                'status' => true
+                'is_verif' => true,
+                'is_block' => false
             ],
             [
                 'nama' => 'Kirom',
                 'telp' => '82345678901',
                 'password' => bcrypt('kirom'),
                 'role' => 'user',
-                'status' => true
+                'is_verif' => true,
+                'is_block' => false
             ],
         ];
 

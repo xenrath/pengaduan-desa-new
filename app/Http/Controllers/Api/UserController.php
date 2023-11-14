@@ -70,7 +70,7 @@ class UserController extends Controller
         ]);
 
         if ($user) {
-            $this->otp($user->telp);
+            $this->otp($user->id, false);
             return $this->response(true, 'Pendaftaran berhasil, silahkan lakukan verifikasi terlebih dahulu', $user);
         } else {
             return $this->response(false, 'Pendaftaran gagal, ' + $validator->errors()->all()[0]);
@@ -79,38 +79,50 @@ class UserController extends Controller
 
     public function verifikasi(Request $request, $id)
     {
+        $validator = Validator::make($request->all(), [
+            'kode' => 'required',
+        ], [
+            'kode.required' => 'Kode tidak boleh kosong!',
+        ]);
+
+        if ($validator->fails()) {
+            return $this->response(false, $validator->errors()->all()[0]);
+        }
+
         $telp = User::where('id', $id)->value('telp');
         $kode = Otp::where('telp', $telp)->value('kode');
 
         if ($request->kode == $kode) {
             User::where('id', $id)->update([
-                'status' => true
+                'is_verif' => true
             ]);
+            return $this->response(true, 'Verifikasi berhasil, Anda sudah dapat login');
         } else {
-            
+            return $this->response(false, 'Kode verifikasi salah!');
         }
     }
 
-    public function otp($telp)
+    public function otp($id, $resend = true)
     {
-        $user = Otp::where('telp', $telp)->exists();
-        $otp = rand(100000, 999999);
+        $user = User::where('id', $id)->first();
+        $otp = Otp::where('telp', $user->telp)->first();
+        $kode = rand(100000, 999999);
 
-        if ($user) {
-            Otp::where('telp', $telp)->update([
-                'kode' => $otp
+        if ($otp) {
+            Otp::where('telp', $user->telp)->update([
+                'kode' => $kode
             ]);
         } else {
             Otp::create([
-                'telp' => $telp,
-                'kode' => $otp
+                'telp' => $user->telp,
+                'kode' => $kode
             ]);
         }
 
         $curl = curl_init();
         $data = [
-            'target' => $telp,
-            'message' => "Kode OTP Pengaduan Desa : " . $otp
+            'target' => $user->telp,
+            'message' => "Kode OTP Pengaduan Desa : " . $kode
         ];
 
         curl_setopt(
@@ -131,6 +143,10 @@ class UserController extends Controller
         $result = curl_exec($curl);
 
         curl_close($curl);
+
+        if ($resend) {
+            return $this->response(true, 'Kode OTP terkirim', $user);
+        }
     }
 
     public function show($id)

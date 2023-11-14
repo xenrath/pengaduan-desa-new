@@ -17,7 +17,8 @@ class User extends Authenticatable
         'telp',
         'password',
         'role',
-        'status',
+        'is_verif',
+        'is_block',
     ];
     
     protected $hidden = [

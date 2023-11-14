@@ -17,7 +17,8 @@ return new class extends Migration
             $table->foreignId('kategori_id')->constrained('kategoris')->onDelete('cascade')->onUpdate('cascade');
             $table->text('deskripsi');
             $table->string('gambar');
-            $table->text('alamat');
+            $table->text('lokasi');
+            $table->text('patokan');
             $table->string('latitude');
             $table->string('longitude');
             $table->time('jam_aduan');

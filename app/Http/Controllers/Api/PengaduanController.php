@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Kategori;
 use App\Models\Pengaduan;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -38,6 +39,8 @@ class PengaduanController extends Controller
             'user_id' => 'required',
             'kategori_id' => 'required',
             'deskripsi' => 'required',
+            'lokasi' => 'required',
+            'patokan' => 'required',
             'gambar' => 'required',
             'latitude' => 'required',
             'longitude' => 'required',
@@ -45,6 +48,8 @@ class PengaduanController extends Controller
             'user_id.required' => 'User tidak ditemukan!',
             'kategori_id.required' => 'Kategori harus dipilih!',
             'deskripsi.required' => 'Deskripsi tidak boleh kosong!',
+            'lokasi.required' => 'Lokasi tidak boleh kosong!',
+            'patokan.required' => 'Patokan tidak boleh kosong!',
             'gambar.required' => 'Gambar harus diisi!',
             'latitude.required' => 'Latitude kosong!',
             'longitude.required' => 'Longitude kosong!'
@@ -62,6 +67,8 @@ class PengaduanController extends Controller
             'user_id' => $request->user_id,
             'kategori_id' => $request->kategori_id,
             'deskripsi' => $request->deskripsi,
+            'lokasi' => $request->lokasi,
+            'patokan' => $request->patokan,
             'gambar' => $gambar_nama,
             'latitude' => $request->latitude,
             'longitude' => $request->longitude,
@@ -85,6 +92,18 @@ class PengaduanController extends Controller
             return $this->response(true, 'Detail Pengaduan berhasil ditampilkan', $pengaduan);
         } else {
             return $this->response(false, 'Detail Pengaduan kosong!');
+        }
+    }
+
+
+    public function get_kategori()
+    {
+        $kategoris = Kategori::get();
+
+        if ($kategoris) {
+            return $this->response(true, 'Berhasil menampilkan kategori', $kategoris);
+        } else {
+            return $this->response(false, 'Gagal menampilkan kategori!');
         }
     }
 

@@ -17,7 +17,8 @@ return new class extends Migration
             $table->string('telp')->unique();
             $table->string('password');
             $table->enum('role', ['admin', 'user']);
-            $table->boolean('status')->default(false);
+            $table->boolean('is_verif')->default(false);
+            $table->boolean('is_block')->default(false);
             $table->timestamps();
         });
     }

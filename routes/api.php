@@ -18,9 +18,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('login', [UserController::class, 'login']);
 Route::post('register', [UserController::class, 'register']);
-Route::get('user/{id}', [UserController::class, 'show']);
+Route::post('verifikasi/{id}', [UserController::class, 'verifikasi']);
+Route::get('otp/{id}', [UserController::class, 'otp']);
+Route::get('user/show/{id}', [UserController::class, 'show']);
 
 Route::get('pengaduan/list-all', [PengaduanController::class, 'list_all']);
 Route::get('pengaduan/list/{user_id}', [PengaduanController::class, 'list']);
-Route::post('pengaduan', [PengaduanController::class, 'store']);
-Route::get('pengaduan/{id}', [PengaduanController::class, 'show']);
+Route::post('pengaduan/store', [PengaduanController::class, 'store']);
+Route::get('pengaduan/show/{id}', [PengaduanController::class, 'show']);
+Route::get('pengaduan/get-kategori', [PengaduanController::class, 'get_kategori']);

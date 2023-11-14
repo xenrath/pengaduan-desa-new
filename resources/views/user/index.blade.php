@@ -45,7 +45,7 @@
                                     <th class="text-center" style="width: 20px">No</th>
                                     <th>Nama</th>
                                     <th>No. Telepon</th>
-                                    <th class="text-center" style="width: 40px">Opsi</th>
+                                    <th class="text-center" style="width: 80px">Opsi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -55,6 +55,9 @@
                                         <td>{{ $user->nama }}</td>
                                         <td>+62{{ $user->telp }}</td>
                                         <td class="text-center">
+                                            <a href="{{ url('user/' . $user->id) }}" class="btn btn-info">
+                                                <i class="far fa-eye"></i>
+                                            </a>
                                             <a href="{{ url('user/hubungi/' . $user->id) }}" class="btn btn-success"
                                                 target="_blank">
                                                 <i class="fab fa-whatsapp"></i>

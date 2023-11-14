@@ -37,6 +37,7 @@ Route::middleware('auth')->group(function () {
     Route::get('pengaduan/riwayat/{id}', [\App\Http\Controllers\Pengaduan\RiwayatController::class, 'show']);
 
     Route::get('user', [UserController::class, 'index']);
+    Route::get('user/{id}', [UserController::class, 'show']);
     Route::get('user/hubungi/{id}', [UserController::class, 'hubungi']);
 
     Route::resource('kategori', KategoriController::class);
