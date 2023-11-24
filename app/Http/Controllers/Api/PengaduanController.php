@@ -13,7 +13,7 @@ class PengaduanController extends Controller
 {
     public function list_all()
     {
-        $pengaduans = Pengaduan::where('status', 'proses')->orWhere('status', 'selesai')->get();
+        $pengaduans = Pengaduan::where('status', 'proses')->orWhere('status', 'selesai')->with('kategori')->get();
 
         if ($pengaduans) {
             return $this->response(true, 'Pengaduan berhasil ditampilkan', $pengaduans);
@@ -24,7 +24,7 @@ class PengaduanController extends Controller
 
     public function list($user_id)
     {
-        $pengaduans = Pengaduan::where('user_id', $user_id)->get();
+        $pengaduans = Pengaduan::where('user_id', $user_id)->with('kategori')->get();
 
         if ($pengaduans) {
             return $this->response(true, 'Pengaduan berhasil ditampilkan', $pengaduans);
@@ -86,7 +86,7 @@ class PengaduanController extends Controller
 
     public function show($id)
     {
-        $pengaduan = Pengaduan::where('id', $id)->with('user', 'kategori', 'detail_pengaduans')->first();
+        $pengaduan = Pengaduan::where('id', $id)->with('user', 'kategori', 'detail_pengaduans', 'komentars')->first();
 
         if ($pengaduan) {
             return $this->response(true, 'Detail Pengaduan berhasil ditampilkan', $pengaduan);

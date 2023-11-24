@@ -29,8 +29,16 @@
                 <div class="card-header">
                     <h3 class="card-title">Detail Pengaduan</h3>
                     <div class="float-right">
+                        <button type="button" class="btn btn-info btn-sm" data-toggle="modal"
+                            data-target="#modal-komentar">
+                            <i class="fas fa-comment"></i>
+                            Komentar
+                        </button>
                         <button type="button" class="btn btn-success btn-sm" data-toggle="modal"
-                            data-target="#modal-selesaikan">Selesaikan</button>
+                            data-target="#modal-selesaikan">
+                            <i class="fas fa-check"></i>
+                            Selesaikan
+                        </button>
                     </div>
                 </div>
                 <!-- /.card-header -->
@@ -195,6 +203,35 @@
                     <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
                     <a href="{{ url('pengaduan/proses/selesai/' . $pengaduan->id) }}"
                         class="btn btn-success">Selesaikan</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="modal-komentar">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Komentar Pengaduan<h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                </div>
+                <div class="modal-body">
+                    @foreach ($komentars as $komentar)
+                        <div class="py-2 px-3 border rounded mb-2">
+                            <div class="mb-2">
+                                <strong>{{ $komentar->user->nama }}</strong>
+                                <small class="text-muted float-right">
+                                    {{ date('H:i, d M Y', strtotime($komentar->created_at)) }}
+                                </small>
+                            </div>
+                            <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi dignissimos ut libero in
+                                tempore earum reiciendis quis, perferendis architecto dolores!</span>
+                        </div>
+                    @endforeach
+                </div>
+                <div class="modal-footer text-right">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
                 </div>
             </div>
         </div>

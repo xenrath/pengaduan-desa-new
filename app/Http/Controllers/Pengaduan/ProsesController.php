@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Pengaduan;
 
 use App\Http\Controllers\Controller;
 use App\Models\DetailPengaduan;
+use App\Models\Komentar;
 use App\Models\Pengaduan;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -22,8 +23,9 @@ class ProsesController extends Controller
     {
         $pengaduan = Pengaduan::where('id', $id)->first();
         $detail_pengaduans = DetailPengaduan::where('pengaduan_id', $id)->orderBy('id', 'desc')->get();
+        $komentars = Komentar::where('pengaduan_id', $id)->orderBy('id', 'desc')->get();
 
-        return view('pengaduan.proses.show', compact('pengaduan', 'detail_pengaduans'));
+        return view('pengaduan.proses.show', compact('pengaduan', 'detail_pengaduans', 'komentars'));
     }
 
     // pengaduan id

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\KomentarController;
 use App\Http\Controllers\Api\PengaduanController;
 use App\Http\Controllers\Api\UserController;
 use Illuminate\Http\Request;
@@ -27,3 +28,5 @@ Route::get('pengaduan/list/{user_id}', [PengaduanController::class, 'list']);
 Route::post('pengaduan/store', [PengaduanController::class, 'store']);
 Route::get('pengaduan/show/{id}', [PengaduanController::class, 'show']);
 Route::get('pengaduan/get-kategori', [PengaduanController::class, 'get_kategori']);
+
+Route::post('komentar/store', [KomentarController::class, 'store']);
