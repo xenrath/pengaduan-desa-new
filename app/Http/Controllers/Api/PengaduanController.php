@@ -86,7 +86,7 @@ class PengaduanController extends Controller
 
     public function show($id)
     {
-        $pengaduan = Pengaduan::where('id', $id)->with('user', 'kategori', 'detail_pengaduans', 'komentars')->first();
+        $pengaduan = Pengaduan::where('id', $id)->with('user', 'kategori', 'detail_pengaduans', 'komentars.user')->first();
 
         if ($pengaduan) {
             return $this->response(true, 'Detail Pengaduan berhasil ditampilkan', $pengaduan);
