@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\DetailPengaduan;
 use App\Models\Kategori;
+use App\Models\Komentar;
 use App\Models\Pengaduan;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -95,6 +97,27 @@ class PengaduanController extends Controller
         }
     }
 
+    public function list_proses($id)
+    {
+        $detail_pengaduans = DetailPengaduan::where('pengaduan_id', $id)->get();
+
+        if ($detail_pengaduans) {
+            return $this->response(true, 'List Proses berhasil ditampilkan', $detail_pengaduans);
+        } else {
+            return $this->response(false, 'List Proses kosong!');
+        }
+    }
+
+    public function list_komentar($id)
+    {
+        $komentars = Komentar::where('pengaduan_id', $id)->get();
+
+        if ($komentars) {
+            return $this->response(true, 'Komentar berhasil ditampilkan', $komentars);
+        } else {
+            return $this->response(false, 'Komentar kosong!');
+        }
+    }
 
     public function get_kategori()
     {
