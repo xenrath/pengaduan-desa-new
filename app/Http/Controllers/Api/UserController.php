@@ -33,7 +33,7 @@ class UserController extends Controller
         ])->first();
         if ($user) {
             if (password_verify($password, $user->password)) {
-                if ($user->status) {
+                if ($user->is_verif) {
                     return $this->response(true, 'Selamat Datang ' . $user->name, $user);
                 } else {
                     return $this->response(false, 'Akun belum terverifikasi, kirim kode verifikasi?', $user);
