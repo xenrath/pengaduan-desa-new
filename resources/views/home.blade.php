@@ -36,7 +36,7 @@
                         <div class="icon">
                             <i class="fas fa-clock"></i>
                         </div>
-                        <a href="{{ url('admin/tiket/menunggu') }}" class="small-box-footer">Lihat <i
+                        <a href="{{ url('pengaduan/menunggu') }}" class="small-box-footer">Lihat <i
                                 class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
@@ -52,7 +52,7 @@
                         <div class="icon">
                             <i class="fas fa-tasks"></i>
                         </div>
-                        <a href="{{ url('admin/tiket/proses') }}" class="small-box-footer">Lihat <i
+                        <a href="{{ url('pengaduan/proses') }}" class="small-box-footer">Lihat <i
                                 class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
@@ -68,7 +68,7 @@
                         <div class="icon">
                             <i class="fas fa-history"></i>
                         </div>
-                        <a href="{{ url('admin/tiket/selesai') }}" class="small-box-footer">Lihat
+                        <a href="{{ url('pengaduan/selesai') }}" class="small-box-footer">Lihat
                             <i class="fas fa-arrow-circle-right"></i>
                         </a>
                     </div>
