@@ -25,6 +25,7 @@ Route::get('user/show/{id}', [UserController::class, 'show']);
 
 Route::get('pengaduan/list-all', [PengaduanController::class, 'list_all']);
 Route::get('pengaduan/list/{user_id}', [PengaduanController::class, 'list']);
+Route::post('pengaduan/search', [PengaduanController::class, 'search']);
 Route::post('pengaduan/store', [PengaduanController::class, 'store']);
 Route::get('pengaduan/show/{id}', [PengaduanController::class, 'show']);
 Route::get('pengaduan/list-proses/{id}', [PengaduanController::class, 'list_proses']);

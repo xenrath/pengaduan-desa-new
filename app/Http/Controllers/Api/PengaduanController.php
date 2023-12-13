@@ -35,6 +35,26 @@ class PengaduanController extends Controller
         }
     }
 
+    public function search(Request $request)
+    {
+        $keyword = $request->keyword;
+
+        $pengaduans = Pengaduan::where(function ($query) {
+            $query->where('status', 'proses');
+            $query->orWhere('status', 'selesai');
+        })->where(function ($query) use ($keyword) {
+            $query->where('deskripsi', 'like', "%$keyword%");
+            $query->orWhere('lokasi', 'like', "%$keyword%");
+            $query->orWhere('patokan', 'like', "%$keyword%");
+        })->with('kategori')->get();
+
+        if ($pengaduans) {
+            return $this->response(true, 'Pengaduan berhasil ditampilkan', $pengaduans);
+        } else {
+            return $this->response(false, 'Pengaduan kosong!');
+        }
+    }
+
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
