@@ -22,6 +22,9 @@ Route::post('register', [UserController::class, 'register']);
 Route::post('verifikasi/{id}', [UserController::class, 'verifikasi']);
 Route::get('otp/{id}', [UserController::class, 'otp']);
 Route::get('user/show/{id}', [UserController::class, 'show']);
+Route::post('user/update-profile/{id}', [UserController::class, 'update_profile']);
+Route::post('user/update-password/{id}', [UserController::class, 'update_password']);
+Route::post('user/verifikasi-profile/{id}', [UserController::class, 'verifikasi_profile']);
 
 Route::get('pengaduan/list-all', [PengaduanController::class, 'list_all']);
 Route::get('pengaduan/list/{user_id}', [PengaduanController::class, 'list']);

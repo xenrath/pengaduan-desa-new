@@ -70,7 +70,7 @@ class UserController extends Controller
         ]);
 
         if ($user) {
-            $this->otp($user->id, false);
+            $this->otp($user->id, $user->telp, false);
             return $this->response(true, 'Pendaftaran berhasil, silahkan lakukan verifikasi terlebih dahulu', $user);
         } else {
             return $this->response(false, 'Pendaftaran gagal, ' + $validator->errors()->all()[0]);
@@ -102,26 +102,25 @@ class UserController extends Controller
         }
     }
 
-    public function otp($id, $resend = true)
+    public function otp($id, $telp, $resend = true)
     {
-        $user = User::where('id', $id)->first();
-        $otp = Otp::where('telp', $user->telp)->first();
+        $otp = Otp::where('telp', $telp)->first();
         $kode = rand(100000, 999999);
 
         if ($otp) {
-            Otp::where('telp', $user->telp)->update([
+            Otp::where('telp', $telp)->update([
                 'kode' => $kode
             ]);
         } else {
             Otp::create([
-                'telp' => $user->telp,
+                'telp' => $telp,
                 'kode' => $kode
             ]);
         }
 
         $curl = curl_init();
         $data = [
-            'target' => $user->telp,
+            'target' => $telp,
             'message' => "Kode OTP Pengaduan Desa : " . $kode
         ];
 
@@ -145,6 +144,7 @@ class UserController extends Controller
         curl_close($curl);
 
         if ($resend) {
+            $user = User::where('id', $id)->first();
             return $this->response(true, 'Kode OTP terkirim', $user);
         }
     }
@@ -157,6 +157,92 @@ class UserController extends Controller
             return $this->response(true, 'Berhasil menampilkan user', $user);
         } else {
             return $this->response(false, 'Gagal menampilkan user!');
+        }
+    }
+
+    public function update_profile(Request $request, $id)
+    {
+        $validator = Validator::make($request->all(), [
+            'nama' => 'required',
+            'telp' => 'required|unique:users,telp,' . $id,
+        ], [
+            'nama.required' => 'Nama tidak boleh kosong!',
+            'telp.required' => 'Nomor telepon tidak boleh kosong!',
+            'telp.unique' => 'Nomor telepon sudah digunakan!'
+        ]);
+
+        if ($validator->fails()) {
+            return $this->response(false, $validator->errors()->all()[0]);
+        }
+
+        $user = User::where('id', $id)->first();
+
+        if ($request->telp != $user->telp) {
+            $this->otp($id, $request->telp, false);
+            return $this->response(true, 'Nomor telepon di ubah, lakukan verifikasi terlebih dahulu', $user);
+        } else {
+            $password = bcrypt($request->password);
+        }
+
+        $user = User::where('id', $id)->update([
+            'nama' => $request->nama,
+            'password' => $password
+        ]);
+
+        if ($user) {
+            return $this->response(true, 'Berhasil memperbarui user');
+        } else {
+            return $this->response(false, 'Gagal memperbarui user!');
+        }
+    }
+
+    public function update_password(Request $request, $id)
+    {
+        $validator = Validator::make($request->all(), [
+            'password' => 'required|confirmed',
+        ], [
+            'password.required' => 'Password tidak boleh kosong!',
+            'password.confirmed' => 'Konfirmasi password tidak sesuai!'
+        ]);
+
+        if ($validator->fails()) {
+            return $this->response(false, $validator->errors()->all()[0]);
+        }
+
+        $user = User::where('id', $id)->update([
+            'password' => bcrypt($request->password)
+        ]);
+
+        if ($user) {
+            return $this->response(true, 'Berhasil memperbarui password');
+        } else {
+            return $this->response(false, 'Gagal memperbarui password!');
+        }
+    }
+
+    public function verifikasi_profile(Request $request, $id)
+    {
+        $validator = Validator::make($request->all(), [
+            'kode' => 'required',
+            'telp' => 'required',
+        ], [
+            'kode.required' => 'Kode tidak boleh kosong!',
+            'telp.required' => 'Nomor telepon kosong!',
+        ]);
+
+        if ($validator->fails()) {
+            return $this->response(false, $validator->errors()->all()[0]);
+        }
+
+        $kode = Otp::where('telp', $request->telp)->value('kode');
+
+        if ($request->kode == $kode) {
+            User::where('id', $id)->update([
+                'telp' => $request->telp
+            ]);
+            return $this->response(true, 'Berhasil memperbarui profile');
+        } else {
+            return $this->response(false, 'Kode verifikasi salah!');
         }
     }
 
