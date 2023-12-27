@@ -34,10 +34,14 @@ class MenungguController extends Controller
 
     public function proses($id)
     {
-        Pengaduan::where('id', $id)->update([
-            'tanggal_proses' => Carbon::now()->format('Y-m-d'),
-            'status' => 'proses'
-        ]);
+        // Pengaduan::where('id', $id)->update([
+        //     'tanggal_proses' => Carbon::now()->format('Y-m-d'),
+        //     'status' => 'proses'
+        // ]);
+
+        $pengaduan = Pengaduan::where('id', $id)->first();
+
+        $this->send_notification($pengaduan->user->telp, "Pengaduan Anda Di Proses");
 
         alert()->success('Success', 'Berhasil memproses Pengaduan');
         return back();
@@ -53,10 +57,8 @@ class MenungguController extends Controller
         return back();
     }
 
-    public function send_notification($id, $message)
+    public function send_notification($telp, $message)
     {
-        $telp = User::where('id', $id)->value('telp');
-
         $curl = curl_init();
         $data = [
             'target' => $telp,
