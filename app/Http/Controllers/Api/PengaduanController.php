@@ -132,7 +132,7 @@ class PengaduanController extends Controller
 
     public function list_komentar($id)
     {
-        $komentars = Komentar::where('pengaduan_id', $id)->get();
+        $komentars = Komentar::where('pengaduan_id', $id)->with('user')->get();
 
         if ($komentars) {
             return $this->response(true, 'Komentar berhasil ditampilkan', $komentars);
