@@ -128,7 +128,7 @@ class UserController extends Controller
             $curl,
             CURLOPT_HTTPHEADER,
             array(
-                "Authorization: i0XBqAozh8uYyMpXe0#2",
+                "Authorization: kYxd9#B1QcqZI1c-7b57",
             )
         );
 
@@ -175,18 +175,9 @@ class UserController extends Controller
             return $this->response(false, $validator->errors()->all()[0]);
         }
 
-        $user = User::where('id', $id)->first();
-
-        if ($request->telp != $user->telp) {
-            $this->otp($id, $request->telp, false);
-            return $this->response(true, 'Nomor telepon di ubah, lakukan verifikasi terlebih dahulu', $user);
-        } else {
-            $password = bcrypt($request->password);
-        }
-
         $user = User::where('id', $id)->update([
             'nama' => $request->nama,
-            'password' => $password
+            'telp' => $request->telp
         ]);
 
         if ($user) {
