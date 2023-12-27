@@ -34,10 +34,10 @@ class MenungguController extends Controller
 
     public function proses($id)
     {
-        // Pengaduan::where('id', $id)->update([
-        //     'tanggal_proses' => Carbon::now()->format('Y-m-d'),
-        //     'status' => 'proses'
-        // ]);
+        Pengaduan::where('id', $id)->update([
+            'tanggal_proses' => Carbon::now()->format('Y-m-d'),
+            'status' => 'proses'
+        ]);
 
         $pengaduan = Pengaduan::where('id', $id)->first();
 
@@ -52,6 +52,10 @@ class MenungguController extends Controller
         Pengaduan::where('id', $id)->update([
             'status' => 'tolak'
         ]);
+
+        $pengaduan = Pengaduan::where('id', $id)->first();
+
+        $this->send_notification($pengaduan->user->telp, "Pengaduan Anda Di Tolak");
 
         alert()->success('Success', 'Berhasil menolak Pengaduan');
         return back();
