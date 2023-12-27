@@ -71,6 +71,14 @@
                             </div>
                             <div class="row">
                                 <div class="col-lg-4 mb-3">
+                                    <strong>Lokasi</strong>
+                                </div>
+                                <div class="col-lg-8">
+                                    {{ $pengaduan->lokasi }} ({{ $pengaduan->patokan }})
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-4 mb-3">
                                     <strong>Waktu Aduan</strong>
                                 </div>
                                 <div class="col-lg-8">
@@ -89,8 +97,8 @@
                         </div>
                         <div class="col-lg-4">
                             <a href="#" data-toggle="modal" data-target="#modal-gambar">
-                                <img src="{{ asset('storage/uploads/' . $pengaduan->gambar) }}" alt="{{ $pengaduan->nama }}"
-                                    class="w-100 rounded">
+                                <img src="{{ asset('storage/uploads/' . $pengaduan->gambar) }}"
+                                    alt="{{ $pengaduan->nama }}" class="w-100 rounded">
                             </a>
                         </div>
                     </div>
@@ -225,8 +233,7 @@
                                     {{ date('H:i, d M Y', strtotime($komentar->created_at)) }}
                                 </small>
                             </div>
-                            <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi dignissimos ut libero in
-                                tempore earum reiciendis quis, perferendis architecto dolores!</span>
+                            <span>{{ $komentar->komentar }}</span>
                         </div>
                     @endforeach
                 </div>

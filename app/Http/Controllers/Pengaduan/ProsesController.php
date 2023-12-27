@@ -56,6 +56,11 @@ class ProsesController extends Controller
             'gambar' => $gambar_nama,
         ]);
 
+        $pengaduan = Pengaduan::where('id', $id)->first();
+        $jumlah = DetailPengaduan::where('pengaduan_id', $id)->count();
+
+        $this->send_notification($pengaduan->user->telp, "Pengaduan Anda Di Proses Tahap " . $jumlah);
+
         alert()->success('Success!', 'Berhasil menambahkan Detail Pengaduan');
         return back();
     }
@@ -66,6 +71,10 @@ class ProsesController extends Controller
             'tanggal_selesai' => Carbon::now()->format('Y-m-d'),
             'status' => 'selesai'
         ]);
+
+        $pengaduan = Pengaduan::where('id', $id)->first();
+
+        $this->send_notification($pengaduan->user->telp, "Pengaduan Anda Telah Selesai");
 
         alert()->success('Success', 'Berhasil memproses Pengaduan');
         return redirect('pengaduan/proses');

@@ -65,6 +65,14 @@
                             </div>
                             <div class="row">
                                 <div class="col-lg-4 mb-3">
+                                    <strong>Lokasi</strong>
+                                </div>
+                                <div class="col-lg-8">
+                                    {{ $pengaduan->lokasi }} ({{ $pengaduan->patokan }})
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-4 mb-3">
                                     <strong>Waktu Aduan</strong>
                                 </div>
                                 <div class="col-lg-8">
