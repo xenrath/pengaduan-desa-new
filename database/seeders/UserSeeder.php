@@ -16,7 +16,7 @@ class UserSeeder extends Seeder
         $users = [
             [
                 'nama' => 'Admin',
-                'telp' => 'admin',
+                'telp' => '85602518653',
                 'password' => bcrypt('admin'),
                 'role' => 'admin',
                 'is_verif' => true,

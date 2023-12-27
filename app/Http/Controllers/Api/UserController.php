@@ -128,7 +128,7 @@ class UserController extends Controller
             $curl,
             CURLOPT_HTTPHEADER,
             array(
-                "Authorization: kYxd9#B1QcqZI1c-7b57",
+                "Authorization: NMW3zyUNYAwudny96K_@",
             )
         );
 

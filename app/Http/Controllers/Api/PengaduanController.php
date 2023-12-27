@@ -7,6 +7,7 @@ use App\Models\DetailPengaduan;
 use App\Models\Kategori;
 use App\Models\Komentar;
 use App\Models\Pengaduan;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -100,6 +101,7 @@ class PengaduanController extends Controller
         ]);
 
         if ($pengaduan) {
+            $this->send_notification($request->user_id, "Pengaduan baru!");
             return $this->response(true, 'Pengaduan berhasil ditambahkan');
         } else {
             return $this->response(false, 'Pengaduan gagal ditambahkan!');
@@ -148,6 +150,36 @@ class PengaduanController extends Controller
         } else {
             return $this->response(false, 'Gagal menampilkan kategori!');
         }
+    }
+
+    public function send_notification($id, $message)
+    {
+        $telp = User::where('id', '1')->value('telp');
+
+        $curl = curl_init();
+        $data = [
+            'target' => $telp,
+            'message' => $message
+        ];
+
+        curl_setopt(
+            $curl,
+            CURLOPT_HTTPHEADER,
+            array(
+                "Authorization: NMW3zyUNYAwudny96K_@",
+            )
+        );
+
+        curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($data));
+        curl_setopt($curl, CURLOPT_URL, "https://api.fonnte.com/send");
+        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
+
+        $result = curl_exec($curl);
+
+        curl_close($curl);
     }
 
     public function response($status, $message, $data = null)
