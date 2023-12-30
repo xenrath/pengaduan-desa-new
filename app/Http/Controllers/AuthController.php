@@ -32,7 +32,13 @@ class AuthController extends Controller
         }
 
         $user = User::where('telp', $request->telp)->first();
-        if ($user->role != 'admin') {
+
+        if ($user) {
+            if ($user->role != 'admin') {
+                alert()->error('Error!', 'Username atau Password salah!');
+                return back()->onlyInput('telp');
+            }
+        } else {
             alert()->error('Error!', 'Username atau Password salah!');
             return back()->onlyInput('telp');
         }
@@ -41,9 +47,6 @@ class AuthController extends Controller
             $request->session()->regenerate();
             return redirect()->intended('/');
         }
-
-        alert()->error('Error!', 'Username atau Password salah!');
-        return back()->onlyInput('telp');
     }
 
     public function logout()
