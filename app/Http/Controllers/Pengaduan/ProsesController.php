@@ -79,4 +79,32 @@ class ProsesController extends Controller
         alert()->success('Success', 'Berhasil memproses Pengaduan');
         return redirect('pengaduan/proses');
     }
+
+    public function send_notification($telp, $message)
+    {
+        $curl = curl_init();
+        $data = [
+            'target' => $telp,
+            'message' => $message
+        ];
+
+        curl_setopt(
+            $curl,
+            CURLOPT_HTTPHEADER,
+            array(
+                "Authorization: NMW3zyUNYAwudny96K_@",
+            )
+        );
+
+        curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($data));
+        curl_setopt($curl, CURLOPT_URL, "https://api.fonnte.com/send");
+        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
+
+        $result = curl_exec($curl);
+
+        curl_close($curl);
+    }
 }
