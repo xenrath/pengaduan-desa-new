@@ -225,7 +225,7 @@
                             </button>
                 </div>
                 <div class="modal-body">
-                    @foreach ($komentars as $komentar)
+                    @forelse ($komentars as $komentar)
                         <div class="py-2 px-3 border rounded mb-2">
                             <div class="mb-2">
                                 <strong>{{ $komentar->user->nama }}</strong>
@@ -235,7 +235,11 @@
                             </div>
                             <span>{{ $komentar->komentar }}</span>
                         </div>
-                    @endforeach
+                    @empty
+                        <div class="py-2 px-3 border rounded mb-2">
+                            <p class="text-center mt-2">- Belum ada komentar yang ditambahkan -</p>
+                        </div>
+                    @endforelse
                 </div>
                 <div class="modal-footer text-right">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>

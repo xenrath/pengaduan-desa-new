@@ -32,6 +32,7 @@ Route::post('pengaduan/search', [PengaduanController::class, 'search']);
 Route::post('pengaduan/store', [PengaduanController::class, 'store']);
 Route::get('pengaduan/show/{id}', [PengaduanController::class, 'show']);
 Route::get('pengaduan/list-proses/{id}', [PengaduanController::class, 'list_proses']);
+Route::get('pengaduan/detail-proses/{id}', [PengaduanController::class, 'detail_proses']);
 Route::get('pengaduan/list-komentar/{id}', [PengaduanController::class, 'list_komentar']);
 Route::get('pengaduan/get-kategori', [PengaduanController::class, 'get_kategori']);
 

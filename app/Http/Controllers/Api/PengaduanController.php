@@ -130,6 +130,17 @@ class PengaduanController extends Controller
         }
     }
 
+    public function detail_proses($id)
+    {
+        $detail_proses = DetailPengaduan::where('id', $id)->first();
+
+        if ($detail_proses) {
+            return $this->response(true, 'Detail Proses berhasil ditampilkan', $detail_proses);
+        } else {
+            return $this->response(false, 'Detail Proses gagal ditampilkan');
+        }
+    }
+
     public function list_komentar($id)
     {
         $komentars = Komentar::where('pengaduan_id', $id)->with('user')->get();

@@ -68,7 +68,7 @@
                         <div class="icon">
                             <i class="fas fa-history"></i>
                         </div>
-                        <a href="{{ url('pengaduan/selesai') }}" class="small-box-footer">Lihat
+                        <a href="{{ url('pengaduan/riwayat') }}" class="small-box-footer">Lihat
                             <i class="fas fa-arrow-circle-right"></i>
                         </a>
                     </div>
