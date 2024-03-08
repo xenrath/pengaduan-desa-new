@@ -75,6 +75,7 @@
                                                 </div>
                                                 <form action="{{ url('komentar/' . $komentar->id) }}" method="post">
                                                     @csrf
+                                                    @method('PUT')
                                                     <div class="modal-body">
                                                         <div class="form-group">
                                                             <label for="komentar">Komentar</label>
