@@ -73,8 +73,7 @@
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
                                                 </div>
-                                                <form action="{{ url('pengaduan/proses/add-detail/' . $pengaduan->id) }}"
-                                                    method="post">
+                                                <form action="{{ url('komentar/' . $komentar->id) }}" method="post">
                                                     @csrf
                                                     <div class="modal-body">
                                                         <div class="form-group">
