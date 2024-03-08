@@ -73,22 +73,21 @@
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
                                                 </div>
-                                                <div class="modal-body">
-                                                    <div class="form-group">
-                                                        <label for="komentar">Komentar</label>
-                                                        <textarea type="text" class="form-control" id="komentar" name="komentar" placeholder="Masukan komentar">{{ old('komentar', $komentar->komentar) }}</textarea>
+                                                <form action="{{ url('pengaduan/proses/add-detail/' . $pengaduan->id) }}"
+                                                    method="post">
+                                                    @csrf
+                                                    <div class="modal-body">
+                                                        <div class="form-group">
+                                                            <label for="komentar">Komentar</label>
+                                                            <textarea type="text" class="form-control" id="komentar" name="komentar" placeholder="Masukan komentar">{{ old('komentar', $komentar->komentar) }}</textarea>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="modal-footer justify-content-between">
-                                                    <button type="button" class="btn btn-default"
-                                                        data-dismiss="modal">Batal</button>
-                                                    <form action="{{ url('komentar/semua/' . $komentar->id) }}"
-                                                        method="POST">
-                                                        @csrf
-                                                        @method('delete')
-                                                        <button type="submit" class="btn btn-danger">Hapus</button>
-                                                    </form>
-                                                </div>
+                                                    <div class="modal-footer justify-content-between">
+                                                        <button type="button" class="btn btn-default"
+                                                            data-dismiss="modal">Batal</button>
+                                                        <button type="submit" class="btn btn-primary">Simpan</button>
+                                                    </div>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>
