@@ -82,7 +82,7 @@ class MenungguController extends Controller
         curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($data));
         curl_setopt($curl, CURLOPT_URL, "https://api.fonnte.com/send");
         curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
-        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);l
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
 
         $result = curl_exec($curl);
 

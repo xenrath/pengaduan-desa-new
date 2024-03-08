@@ -45,14 +45,14 @@
 </head>
 
 <body class="hold-transition sidebar-mini">
-    
+
     @include('sweetalert::alert')
 
     <div class="wrapper">
         <!-- Preloader -->
         <div class="preloader flex-column justify-content-center align-items-center">
-            <img class="animation__shake" src="{{ asset('storage/uploads/logo.png') }}" alt="Pengaduan Desa" height="80"
-                width="80">
+            <img class="animation__shake" src="{{ asset('storage/uploads/logo.png') }}" alt="Pengaduan Desa"
+                height="80" width="80">
         </div>
 
         <!-- Navbar -->
@@ -139,10 +139,28 @@
                                 </p>
                             </a>
                         </li>
-                        <br>
-                        <li class="nav-header">
-                            <button type="button" data-toggle="modal" data-target="#modal-logout" class="btn btn-danger btn-block">Logout</button>
+                        <li class="nav-header">Edit</li>
+                        <li class="nav-item">
+                            <a href="{{ url('pengaduan/semua') }}"
+                                class="nav-link {{ request()->is('pengaduan/semua*') ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-clipboard-list"></i>
+                                <p>
+                                    Data Pengaduan
+                                </p>
+                            </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{ url('komentar') }}"
+                                class="nav-link {{ request()->is('komentar*') ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-comments"></i>
+                                <p>
+                                    Data Komentar
+                                </p>
+                            </a>
+                        </li>
+                        <br>
+                        <button type="button" data-toggle="modal" data-target="#modal-logout"
+                            class="btn btn-danger btn-block">Logout</button>
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->

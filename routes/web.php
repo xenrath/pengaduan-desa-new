@@ -3,7 +3,9 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\KomentarController;
 use App\Http\Controllers\UserController;
+use App\Models\Komentar;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,9 +34,11 @@ Route::middleware('auth')->group(function () {
     Route::get('pengaduan/proses/{id}', [\App\Http\Controllers\Pengaduan\ProsesController::class, 'show']);
     Route::post('pengaduan/proses/add-detail/{id}', [\App\Http\Controllers\Pengaduan\ProsesController::class, 'add_detail']);
     Route::get('pengaduan/proses/selesai/{id}', [\App\Http\Controllers\Pengaduan\ProsesController::class, 'selesai']);
-
+    
     Route::get('pengaduan/riwayat', [\App\Http\Controllers\Pengaduan\RiwayatController::class, 'index']);
     Route::get('pengaduan/riwayat/{id}', [\App\Http\Controllers\Pengaduan\RiwayatController::class, 'show']);
+    
+    Route::resource('pengaduan/semua', \App\Http\Controllers\Pengaduan\SemuaController::class);
 
     Route::get('user', [UserController::class, 'index']);
     Route::get('user/{id}', [UserController::class, 'show']);
@@ -42,5 +46,7 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('kategori', KategoriController::class);
     
+    Route::resource('komentar', KomentarController::class);
+
     Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 });
