@@ -47,7 +47,7 @@
                                     <th class="text-center" style="width: 20px">No</th>
                                     <th>Nama Pengadu</th>
                                     <th>Komentar</th>
-                                    <th class="text-center" style="width: 160px">Opsi</th>
+                                    <th class="text-center" style="width: 40px">Opsi</th>
                                 </tr>
                             </thead>
                             <tbody>
