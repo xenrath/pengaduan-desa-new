@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $menunggu = Pengaduan::where('status', 'menunggu')->count();
         $proses = Pengaduan::where('status', 'proses')->count();
@@ -26,11 +26,20 @@ class HomeController extends Controller
 
         $label = array();
         $data = array();
+
+        $status = $request->status;
+
         foreach ($bulan as $b) {
-            $jumlah_pengaduan = Pengaduan::where('status', 'selesai')
-                ->whereMonth('tanggal_selesai', $b['month'])
-                ->whereYear('tanggal_selesai', $b['year'])
-                ->count();
+            if ($status != "") {
+                $jumlah_pengaduan = Pengaduan::where('status', $status)
+                    ->whereMonth('tanggal_selesai', $b['month'])
+                    ->whereYear('tanggal_selesai', $b['year'])
+                    ->count();
+            } else {
+                $jumlah_pengaduan = Pengaduan::whereMonth('tanggal_selesai', $b['month'])
+                    ->whereYear('tanggal_selesai', $b['year'])
+                    ->count();
+            }
             $label[] = $b['label'];
             $data[] = $jumlah_pengaduan;
         }

@@ -77,11 +77,25 @@
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title">Grafik Pengaduan</h3>
+                    <form action="{{ url('/') }}" method="get" id="form-filter">
+                        <div class="float-right">
+                            <select class="form-control" id="status" name="status"
+                                onchange="document.getElementById('form-filter').submit()">
+                                <option value="">Semua Kategori</option>
+                                <option value="menunggu" {{ request()->get('status') == 'menunggu' ? 'selected' : '' }}>
+                                    Menunggu</option>
+                                <option value="proses" {{ request()->get('status') == 'proses' ? 'selected' : '' }}>Diproses
+                                </option>
+                                <option value="selesai" {{ request()->get('status') == 'selesai' ? 'selected' : '' }}>
+                                    Selesai</option>
+                                <option value="tolak" {{ request()->get('status') == 'tolak' ? 'selected' : '' }}>Ditolak
+                                </option>
+                            </select>
+                        </div>
+                    </form>
                 </div>
                 <div class="card-body">
-                    <div>
-                        <canvas id="myChart"></canvas>
-                    </div>
+                    <canvas id="myChart"></canvas>
                 </div>
             </div>
             <!-- /.row -->
