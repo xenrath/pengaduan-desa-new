@@ -139,7 +139,7 @@
                                 </p>
                             </a>
                         </li>
-                        <li class="nav-header">Edit</li>
+                        {{-- <li class="nav-header">Edit</li>
                         <li class="nav-item">
                             <a href="{{ url('pengaduan/semua') }}"
                                 class="nav-link {{ request()->is('pengaduan/semua*') ? 'active' : '' }}">
@@ -157,7 +157,7 @@
                                     Data Komentar
                                 </p>
                             </a>
-                        </li>
+                        </li> --}}
                         <br>
                         <button type="button" data-toggle="modal" data-target="#modal-logout"
                             class="btn btn-danger btn-block">Logout</button>
