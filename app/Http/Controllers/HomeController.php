@@ -37,7 +37,7 @@ class HomeController extends Controller
                     ->whereYear('updated_at', $b['year'])
                     ->count();
             } else {
-                $jumlah_pengaduan = Pengaduan::whereMonth('tanggal_selesai', $b['month'])
+                $jumlah_pengaduan = Pengaduan::whereMonth('updated_at', $b['month'])
                     ->whereYear('updated_at', $b['year'])
                     ->count();
             }
