@@ -68,7 +68,7 @@
                                             @endif
                                         </td>
                                         <td class="text-center">
-                                            <a href="{{ url('pengaduan/riwayat/' . $pengaduan->id) }}"
+                                            <a href="{{ url('pengaduan/tolak/' . $pengaduan->id) }}"
                                                 class="btn btn-info btn-sm">
                                                 Lihat
                                             </a>
