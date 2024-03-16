@@ -12,7 +12,8 @@ class HomeController extends Controller
     {
         $menunggu = Pengaduan::where('status', 'menunggu')->count();
         $proses = Pengaduan::where('status', 'proses')->count();
-        $riwayat = Pengaduan::where('status', 'selesai')->count();
+        $selesai = Pengaduan::where('status', 'selesai')->count();
+        $tolak = Pengaduan::where('status', 'tolak')->count();
 
         $bulan = array();
         for ($i = 1; $i <= 12; $i++) {
@@ -44,6 +45,6 @@ class HomeController extends Controller
             $data[] = $jumlah_pengaduan;
         }
 
-        return view('home', compact('menunggu', 'proses', 'riwayat', 'data', 'label'));
+        return view('home', compact('menunggu', 'proses', 'selesai', 'tolak', 'data', 'label'));
     }
 }

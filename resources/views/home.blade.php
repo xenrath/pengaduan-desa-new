@@ -24,7 +24,7 @@
         <div class="container-fluid">
             <!-- Small boxes (Stat box) -->
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <!-- small box -->
                     <div class="small-box bg-warning">
                         <div class="inner">
@@ -40,7 +40,7 @@
                                 class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <!-- small box -->
                     <div class="small-box bg-primary">
                         <div class="inner">
@@ -56,19 +56,36 @@
                                 class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <!-- small box -->
                     <div class="small-box bg-success">
                         <div class="inner">
                             <h3>
-                                {{ $riwayat }}&nbsp;data
+                                {{ $selesai }}&nbsp;data
                             </h3>
-                            <p>Pengaduan Riwayat</p>
+                            <p>Pengaduan Selesai</p>
                         </div>
                         <div class="icon">
-                            <i class="fas fa-history"></i>
+                            <i class="fas fa-check"></i>
                         </div>
-                        <a href="{{ url('pengaduan/riwayat') }}" class="small-box-footer">Lihat
+                        <a href="{{ url('pengaduan/selesai') }}" class="small-box-footer">Lihat
+                            <i class="fas fa-arrow-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <!-- small box -->
+                    <div class="small-box bg-danger">
+                        <div class="inner">
+                            <h3>
+                                {{ $tolak }}&nbsp;data
+                            </h3>
+                            <p>Pengaduan Tolak</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-times"></i>
+                        </div>
+                        <a href="{{ url('pengaduan/tolak') }}" class="small-box-footer">Lihat
                             <i class="fas fa-arrow-circle-right"></i>
                         </a>
                     </div>
@@ -84,7 +101,8 @@
                                 <option value="">Semua Kategori</option>
                                 <option value="menunggu" {{ request()->get('status') == 'menunggu' ? 'selected' : '' }}>
                                     Menunggu</option>
-                                <option value="proses" {{ request()->get('status') == 'proses' ? 'selected' : '' }}>Diproses
+                                <option value="proses" {{ request()->get('status') == 'proses' ? 'selected' : '' }}>
+                                    Diproses
                                 </option>
                                 <option value="selesai" {{ request()->get('status') == 'selesai' ? 'selected' : '' }}>
                                     Selesai</option>

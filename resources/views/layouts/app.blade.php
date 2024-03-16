@@ -112,11 +112,20 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ url('pengaduan/riwayat') }}"
-                                class="nav-link {{ request()->is('pengaduan/riwayat*') ? 'active' : '' }}">
-                                <i class="nav-icon fas fa-history"></i>
+                            <a href="{{ url('pengaduan/selesai') }}"
+                                class="nav-link {{ request()->is('pengaduan/selesai*') ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-check"></i>
                                 <p>
-                                    Data Riwayat
+                                    Data Selesai
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ url('pengaduan/tolak') }}"
+                                class="nav-link {{ request()->is('pengaduan/tolak*') ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-times"></i>
+                                <p>
+                                    Data Tolak
                                 </p>
                             </a>
                         </li>
