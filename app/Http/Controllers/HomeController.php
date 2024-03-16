@@ -33,12 +33,12 @@ class HomeController extends Controller
         foreach ($bulan as $b) {
             if ($status != "") {
                 $jumlah_pengaduan = Pengaduan::where('status', $status)
-                    ->whereMonth('updated_at', $b['month'])
-                    ->whereYear('updated_at', $b['year'])
+                    ->whereMonth('created_at', $b['month'])
+                    ->whereYear('created_at', $b['year'])
                     ->count();
             } else {
-                $jumlah_pengaduan = Pengaduan::whereMonth('updated_at', $b['month'])
-                    ->whereYear('updated_at', $b['year'])
+                $jumlah_pengaduan = Pengaduan::whereMonth('created_at', $b['month'])
+                    ->whereYear('created_at', $b['year'])
                     ->count();
             }
             $label[] = $b['label'];
